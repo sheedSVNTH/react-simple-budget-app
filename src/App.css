@@ -1,0 +1,89 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  	background-color: #256;
+  	height: 75px;
+  	padding: 20px;
+  	color: white;
+	margin-bottom: 10px; 
+}
+
+.App-title {
+  	font-size: 2.5em;
+	font-weight: 300
+}
+.line {
+	border: 0.5px solid gray; 
+	width: 90%;
+	align-self: center;
+	margin-top: 10px; 
+}
+.container {
+	display: flex;
+	flex-direction: column;
+	background: rgba(0,0,0,0.15);
+	width: 45%;
+	margin-left: 50px; 
+	padding-top: 10px; 
+}
+
+.income-add-form input{
+	width: 200px; 
+	height: 20px;  
+}
+
+.inputDesc, .inputAmt {
+	height: 20px; 
+	font-size: 15px;
+}
+
+.UIdiv {
+	display: flex;
+	flex-direction: column;
+	align-content: center; 
+	align-items: center; 
+}
+
+table {
+    font-family: sans-serif;
+    border-collapse: collapse;
+}
+
+h1 {
+	font-size: 20px;
+	font-weight: 300
+}
+
+tr {
+	width: 50%;
+}
+
+td, th {
+	text-align: left; 
+	padding: 5px;
+	text-transform: capitalize;
+	
+}
+
+tr {background-color: #f2f2f2;}
+
+.income-amount, .expense-amount {
+	padding-right: 10px;
+	padding-left: 30px; 
+}
+
+.xBtn, .addBtn {
+    padding: 4px; 
+}
+
+.addBtn:hover {
+	background: lightgray;
+}
+
+.expenseItem, .incomeItem{
+	align-items: center;
+	border: 1px solid black;
+	margin: 1px; 
+}
