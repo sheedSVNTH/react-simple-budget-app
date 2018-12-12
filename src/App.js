@@ -12,35 +12,69 @@ class App extends Component {
 			expenseItems: [],
 			totalIncome: 0,
 			totalExpense: 0,
-			color: 'black'
+			color: 'black',
+			counter: 0
 		}
 		this.addBudgetItem = this.addBudgetItem.bind(this);	
 		this.addExpenseItem = this.addExpenseItem.bind(this);
 		this.deleteIncomeItem = this.deleteIncomeItem.bind(this);
+		this.deleteExpenseItem = this.deleteExpenseItem.bind(this);
 	}
 	
 	addBudgetItem (item, amount) {
 		let newIncomeTotal = this.state.totalIncome + parseInt(amount);
 		this.setState({
-			 incomeItems: [...this.state.incomeItems, {item: item, amount: amount}],
+			incomeItems: [...this.state.incomeItems, {item: item, amount: amount}],
 			totalIncome: newIncomeTotal
-
 		})
+		if (this.state.totalIncome > this.state.totalExpense) {
+			this.setState({
+				color: 'green'
+			})
+		} else if(this.state.totalIncome < this.state.totalExpense) {
+			this.setState({
+				color: 'red'
+			})
+		}
 	}
+//		addExpenseItem (expItem, expAmount) {
+//		let newExpenseTotal = this.state.totalExpense + parseInt(expAmount);
+//
+//		this.setState({
+//			 expenseItems: [...this.state.expenseItems, {expItem: expItem, expAmount: expAmount}],
+//			totalExpense: newExpenseTotal
+//		})
+//	
 	addExpenseItem (expItem, expAmount) {
 		let newExpenseTotal = this.state.totalExpense + parseInt(expAmount);
+
 		this.setState({
 			 expenseItems: [...this.state.expenseItems, {expItem: expItem, expAmount: expAmount}],
 			totalExpense: newExpenseTotal
 		})
+		if (this.state.totalIncome > this.state.totalExpense) {
+			this.setState({
+				color: 'green'
+			})
+		} else if(this.state.totalIncome < this.state.totalExpense) {
+			this.setState({
+				color: 'red'
+			})
+		}
 	}
 	
-	deleteIncomeItem (id) {
-		//this.setState(prevState => ({
-    //    incomeItems: prevState.incomeItems.filter(el => el != id )
-   // })); 
-		alert("this works");
-	}
+	deleteIncomeItem (incomeIndex) {
+		const newIncList = this.state.incomeItems;
+		console.log(newIN);
+		newIncList.splice(incomeIndex, 1);
+		this.setState({incomeItems: newIncList}); 
+	}   
+	
+	deleteExpenseItem (expenseIndex) {
+		const newExpList = this.state.expenseItems;
+		newExpList.splice(expenseIndex, 1);
+		this.setState({expenseItems: newExpList}); 
+	}  
 	
   render() {
 	  
@@ -61,7 +95,7 @@ class App extends Component {
 				</table>
 				<table>
 					<h1>EXPENSE ITEMS</h1>
-					<tr><ExpenseList expenseList={this.state.expenseItems} /></tr>
+					<tr><ExpenseList expenseList={this.state.expenseItems} deleteExpenseItem={this.deleteExpenseItem}/></tr>
 					<p className="expense-desc">Total Expense: {this.state.totalExpense} </p>
 				</table>
 		<h2 style={{color:this.state.color}}> TOTAL BALANCE: {this.state.totalIncome - this.state.totalExpense}</h2>

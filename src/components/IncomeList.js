@@ -1,5 +1,5 @@
 import React from 'react';
-import IncomeItem from './IncomeItem';
+
 import '../App.css';
 
 function IncomeList (props) {
@@ -7,11 +7,28 @@ function IncomeList (props) {
 		<div className="income-list">
                 {props.incomeList.map((income, index) => {
                     return (
-						<IncomeItem key={index} deleteINCitem={props.deleteIncomeItem} description={income.item} amount={income.amount}/>
-						
+						<tr className="incomeItem">
+                <td className="income-desc">{income.item}</td>
+			    <td className="income-amount">{income.amount}</td>
+				<td><button className="xBtn" onClick={props.deleteIncomeItem}>X</button></td>
+            </tr>					
                     )
                 })}
             </div>
         )
 }
 export default IncomeList;
+
+/*
+
+<div className="income-list">
+                {props.incomeList.map((income, i) => {
+                    return (
+						<IncomeItem key={i} deleteINCitem={props.deleteIncomeItem(i)} description={income.item} amount={income.amount}/>
+						
+                    )
+                })}
+            </div>
+			
+			import IncomeItem from './IncomeItem';
+			*/

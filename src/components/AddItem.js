@@ -6,9 +6,7 @@ class AddItem extends React.Component {
 		super(props);
 		this.state = {
 			item:'',
-			amount: '',
-			expItem: '',
-			expAmount: ''
+			amount: ''
 		}
 		
 		this.handleChangeItem = this.handleChangeItem.bind(this);
@@ -42,8 +40,8 @@ class AddItem extends React.Component {
 		e.preventDefault()
 		this.props.addExpenseItem(this.state.item, this.state.amount);
 		this.setState({
-			expItem: '',
-			expAmount: ''
+			amount: '',
+			item: ''
 		});
 	}
 	
