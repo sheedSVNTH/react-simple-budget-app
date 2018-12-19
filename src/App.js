@@ -27,24 +27,8 @@ class App extends Component {
 			incomeItems: [...this.state.incomeItems, {item: item, amount: amount}],
 			totalIncome: newIncomeTotal
 		})
-		if (this.state.totalIncome > this.state.totalExpense) {
-			this.setState({
-				color: 'green'
-			})
-		} else if(this.state.totalIncome < this.state.totalExpense) {
-			this.setState({
-				color: 'red'
-			})
-		}
 	}
-//		addExpenseItem (expItem, expAmount) {
-//		let newExpenseTotal = this.state.totalExpense + parseInt(expAmount);
-//
-//		this.setState({
-//			 expenseItems: [...this.state.expenseItems, {expItem: expItem, expAmount: expAmount}],
-//			totalExpense: newExpenseTotal
-//		})
-//	
+
 	addExpenseItem (expItem, expAmount) {
 		let newExpenseTotal = this.state.totalExpense + parseInt(expAmount);
 
@@ -52,29 +36,25 @@ class App extends Component {
 			 expenseItems: [...this.state.expenseItems, {expItem: expItem, expAmount: expAmount}],
 			totalExpense: newExpenseTotal
 		})
-		if (this.state.totalIncome > this.state.totalExpense) {
-			this.setState({
-				color: 'green'
-			})
-		} else if(this.state.totalIncome < this.state.totalExpense) {
-			this.setState({
-				color: 'red'
-			})
-		}
 	}
 	
 	deleteIncomeItem (incomeIndex) {
 		const newIncList = this.state.incomeItems;
-		console.log(newIN);
 		newIncList.splice(incomeIndex, 1);
 		this.setState({incomeItems: newIncList}); 
+		let total = 0;
+		newIncList.map((inc) => {total += parseInt(inc.amount)});
+		this.setState({totalIncome: total});
 	}   
 	
 	deleteExpenseItem (expenseIndex) {
 		const newExpList = this.state.expenseItems;
 		newExpList.splice(expenseIndex, 1);
 		this.setState({expenseItems: newExpList}); 
-	}  
+		let total = 0;
+		newExpList.map((exp) => {total += parseInt(exp.expAmount)});
+		this.setState({totalExpense: total});
+	}
 	
   render() {
 	  
@@ -98,7 +78,8 @@ class App extends Component {
 					<tr><ExpenseList expenseList={this.state.expenseItems} deleteExpenseItem={this.deleteExpenseItem}/></tr>
 					<p className="expense-desc">Total Expense: {this.state.totalExpense} </p>
 				</table>
-		<h2 style={{color:this.state.color}}> TOTAL BALANCE: {this.state.totalIncome - this.state.totalExpense}</h2>
+
+		<h2 style={(this.state.totalIncome - this.state.totalExpense === 0) ? {color: 'black'}: (this.state.totalIncome > this.state.totalExpense) ? {color:'green'}:{color:'red'}}> TOTAL BALANCE: {this.state.totalIncome - this.state.totalExpense}</h2>
 			</div>
 		</div>
      </div>
