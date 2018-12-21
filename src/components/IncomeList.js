@@ -10,7 +10,7 @@ function IncomeList (props) {
 						<tr className="incomeItem">
                 <td className="income-desc">{income.item}</td>
 			    <td className="income-amount">{income.amount}</td>
-				<td><button className="xBtn" onClick={props.deleteIncomeItem}>X</button></td>
+				<td><button className="xBtn" onClick={() => props.deleteIncomeItem(index)}>X</button></td>
             </tr>					
                     )
                 })}

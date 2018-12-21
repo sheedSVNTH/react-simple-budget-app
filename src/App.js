@@ -38,21 +38,23 @@ class App extends Component {
 		})
 	}
 	
-	deleteIncomeItem (incomeIndex) {
+	deleteIncomeItem (index) {
 		const newIncList = this.state.incomeItems;
-		newIncList.splice(incomeIndex, 1);
-		this.setState({incomeItems: newIncList}); 
+        const slicedIncome = newIncList.slice(0, index).concat(newIncList.slice(index + 1));
+		this.setState({incomeItems: slicedIncome}); 
+				
 		let total = 0;
-		newIncList.map((inc) => {total += parseInt(inc.amount)});
+		slicedIncome.map((inc) => {total += parseInt(inc.amount)});
 		this.setState({totalIncome: total});
 	}   
 	
-	deleteExpenseItem (expenseIndex) {
+	deleteExpenseItem (index) {
 		const newExpList = this.state.expenseItems;
-		newExpList.splice(expenseIndex, 1);
-		this.setState({expenseItems: newExpList}); 
+		const slicedExp = newExpList.slice(0, index).concat(newExpList.slice(index + 1));
+		this.setState({expenseItems: slicedExp}); 
+		
 		let total = 0;
-		newExpList.map((exp) => {total += parseInt(exp.expAmount)});
+		slicedExp.map((exp) => {total += parseInt(exp.expAmount)});
 		this.setState({totalExpense: total});
 	}
 	
@@ -88,3 +90,9 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+//
+//		const newIncList = this.state.incomeItems;
+//		newIncList.splice(incomeIndex, 1);
