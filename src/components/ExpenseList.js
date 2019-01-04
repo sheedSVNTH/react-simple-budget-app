@@ -9,6 +9,7 @@ function ExpenseList(props) {
 						<tr className="expenseItem" key={expense}>
 							<td className="expense-desc">{expense.expItem}</td>
 							<td className="expense-amount">{expense.expAmount}</td>
+							<td className="expense-category">{expense.expCategory}</td>
 							<td><button className="xBtn" onClick={() => props.deleteExpenseItem(index)}>X</button></td>
 						</tr>
                     )

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IncomeList from './components/IncomeList';
 import ExpenseList from './components/ExpenseList';
 import AddItem from './components/AddItem';
+import Chart from './components/Chart';
 import './App.css';
 
 class App extends Component {
@@ -21,19 +22,19 @@ class App extends Component {
 		this.deleteExpenseItem = this.deleteExpenseItem.bind(this);
 	}
 	
-	addBudgetItem (item, amount) {
+	addBudgetItem (item, amount, category) {
 		let newIncomeTotal = this.state.totalIncome + parseInt(amount);
 		this.setState({
-			incomeItems: [...this.state.incomeItems, {item: item, amount: amount}],
+			incomeItems: [...this.state.incomeItems, {item: item, amount: amount, category: category}],
 			totalIncome: newIncomeTotal
 		})
 	}
 
-	addExpenseItem (expItem, expAmount) {
+	addExpenseItem (expItem, expAmount, expCategory) {
 		let newExpenseTotal = this.state.totalExpense + parseInt(expAmount);
 
 		this.setState({
-			 expenseItems: [...this.state.expenseItems, {expItem: expItem, expAmount: expAmount}],
+			 expenseItems: [...this.state.expenseItems, {expItem: expItem, expAmount: expAmount, expCategory: expCategory}],
 			totalExpense: newExpenseTotal
 		})
 	}
@@ -83,6 +84,9 @@ class App extends Component {
 
 		<h2 style={(this.state.totalIncome - this.state.totalExpense === 0) ? {color: 'black'}: (this.state.totalIncome > this.state.totalExpense) ? {color:'green'}:{color:'red'}}> TOTAL BALANCE: {this.state.totalIncome - this.state.totalExpense}</h2>
 			</div>
+		</div>
+		<div>
+		<Chart />
 		</div>
      </div>
     );
