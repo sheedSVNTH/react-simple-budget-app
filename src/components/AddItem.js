@@ -9,7 +9,6 @@ class AddItem extends React.Component {
 			amount: '',
 			category: 'Select Category'
 		}
-		
 		this.handleChangeItem = this.handleChangeItem.bind(this);
 		this.handleChangeAmount = this.handleChangeAmount.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,24 +26,20 @@ class AddItem extends React.Component {
 		this.setState({
 			amount: e.target.value
 		});
-
 	}
 	
 	handleSubmit(e){
 		this.setState({
 			category: e.target.value
 		});
-
 	}
 	
 	handleAddInc(e){
 		e.preventDefault()
 		this.props.addBudgetItem(this.state.item, this.state.amount, this.state.category);
-		//alert(`item: ${this.state.item}, Amount: ${this.state.amount}, Category: ${this.state.category}`  );
 		this.setState({
 			amount: '',
-			item: '',
-			category: ''
+			item: ''
 		});
 	}
 	
@@ -53,8 +48,7 @@ class AddItem extends React.Component {
 		this.props.addExpenseItem(this.state.item, this.state.amount, this.state.category);
 		this.setState({
 			amount: '',
-			item: '',
-			category: ''
+			item: ''
 		});
 	}
 	
@@ -80,11 +74,11 @@ class AddItem extends React.Component {
           <select onChange={this.handleSubmit}>
 			<option value="" disabled selected>Please Choose...</option>
 			<option value="earned">INC: Earned</option>
-			<option value="investment">INC: Investment</option>
+			<option value="invest">INC: Investment</option>
 			<option value="sales">INC: Sales</option>
 			<option value="re">INC: Real Estate</option>
 			<option value="services">INC: Services</option>
-			<option value="inc-other">INC: Other</option>
+			<option value="other">INC: Other</option>
 			<option value="expRe">EXP: Real Estate</option>
 			<option value="utility">EXP: Utility</option>
 			<option value="auto">EXP: Auto</option>
@@ -92,7 +86,7 @@ class AddItem extends React.Component {
 			<option value="food">EXP: Food</option>
 			<option value="supply">EXP: Supplies</option>
 			<option value="recreation">EXP: Recreation</option>
-			<option value="exp-other">EXP: Other</option>
+			<option value="other">EXP: Other</option>
           </select>
       </form>
 			
@@ -104,3 +98,5 @@ class AddItem extends React.Component {
 }
 
 export default AddItem
+
+			//<option value="" disabled selected>EXPENSES</option>

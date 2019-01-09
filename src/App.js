@@ -14,7 +14,12 @@ class App extends Component {
 			totalIncome: 0,
 			totalExpense: 0,
 			color: 'black',
-			counter: 0
+			incEarned: 0,
+			incInvest: 0,
+			incSales: 0,
+			incRe: 0,
+			incServices: 0,
+			incOther: 0
 		}
 		this.addBudgetItem = this.addBudgetItem.bind(this);	
 		this.addExpenseItem = this.addExpenseItem.bind(this);
@@ -28,7 +33,32 @@ class App extends Component {
 			incomeItems: [...this.state.incomeItems, {item: item, amount: amount, category: category}],
 			totalIncome: newIncomeTotal
 		})
-	}
+		const newIncList = this.state.incomeItems;
+		let incEarned = this.state.incEarned;
+		let incInvest = this.state.incInvest;
+		let incSales = this.state.incSales;
+		let incRe = this.state.incRe;
+		let incServices = this.state.incServices;
+		let incOther = this.state.incOther;
+		
+		
+		newIncList.map((item) => {
+			if(item.category === 'earned'){
+				incEarned += parseInt(item.amount);
+			} else if (item.category === 'invest'){
+				incInvest += parseInt(item.amount);
+			} else if (item.category === 'sales'){
+				incSales += parseInt(item.amount);
+			} else if (item.category === 're'){
+				incRe += parseInt(item.amount);
+			} else if (item.category === 'services'){
+				incServices += parseInt(item.amount);
+			} else {
+				incOther += parseInt(item.amount);
+			}
+		})
+		alert(`Earned: ${incEarned}\n Invest: ${incInvest} \n Sales: ${incSales} \n Real Estate: ${incRe} \n Services: ${incServices} \n Other: ${incOther}`);
+		}
 
 	addExpenseItem (expItem, expAmount, expCategory) {
 		let newExpenseTotal = this.state.totalExpense + parseInt(expAmount);
